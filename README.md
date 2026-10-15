@@ -51,4 +51,4 @@ The dev scripts set `NODE_TLS_REJECT_UNAUTHORIZED=0` because a local Neon Auth s
 
 ## Status
 
-`packages/oauth-client` is a prototype. Its functionality is moving into `@neon/auth`, after which the demos will switch to that package.
+`packages/oauth-client` is a prototype. It will be published as a new package, `@neon/oauth`, after which the demos will switch to that package.
