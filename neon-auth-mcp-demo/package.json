@@ -1,0 +1,25 @@
+{
+  "name": "neon-auth-mcp-demo",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 next dev -p 31099",
+    "build": "next build",
+    "start": "NODE_TLS_REJECT_UNAUTHORIZED=0 next start -p 31099"
+  },
+  "dependencies": {
+    "@neondatabase/auth-ui": "0.3.0-beta",
+    "@neondatabase/neon-js": "0.7.0-beta",
+    "next": "16.3.5",
+    "pg": "^8.23.1",
+    "react": "19.2.1",
+    "react-dom": "19.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "20",
+    "@types/pg": "^8.23.1",
+    "@types/react": "19",
+    "@types/react-dom": "19",
+    "typescript": "5"
+  }
+}

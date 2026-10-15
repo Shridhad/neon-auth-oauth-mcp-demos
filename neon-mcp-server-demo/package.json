@@ -1,0 +1,27 @@
+{
+  "name": "neon-mcp-server-demo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 tsx watch src/index.ts",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "start": "NODE_TLS_REJECT_UNAUTHORIZED=0 node dist/index.js"
+  },
+  "dependencies": {
+    "@hono/node-server": "2.1.1",
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "@neon/oauth-client": "file:../packages/oauth-client",
+    "dotenv": "17.4.2",
+    "hono": "4.13.8",
+    "pg": "8.23.1",
+    "zod": "4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "22.10.5",
+    "@types/pg": "8.23.1",
+    "tsx": "4.23.13",
+    "typescript": "5.9.3"
+  }
+}

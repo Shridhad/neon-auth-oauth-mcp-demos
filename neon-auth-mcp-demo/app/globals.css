@@ -1,0 +1,227 @@
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+main {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+/* OAuth sign-in screen. Built on auth-ui's --neon-* theme variables so it
+   tracks the same light/dark palette as the <AuthView> card. */
+.oauth-main {
+  display: flex;
+  justify-content: center;
+  padding-top: 4rem;
+}
+
+.oauth-card {
+  width: 100%;
+  max-width: 24rem;
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  border: 1px solid var(--neon-border);
+  border-radius: calc(var(--neon-radius) + 4px);
+  background: var(--neon-card);
+  color: var(--neon-card-foreground);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
+}
+
+.oauth-header {
+  display: grid;
+  gap: 0.375rem;
+}
+
+.oauth-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.oauth-muted {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--neon-muted-foreground);
+}
+
+.oauth-client {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.375rem 0.75rem;
+  margin: 0;
+  padding: 0.75rem;
+  border-radius: var(--neon-radius);
+  background: var(--neon-muted);
+  font-size: 0.8125rem;
+}
+
+.oauth-client dt {
+  color: var(--neon-muted-foreground);
+}
+
+.oauth-client dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.oauth-scopes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.oauth-scopes li {
+  padding: 0 0.375rem;
+  border: 1px solid var(--neon-border);
+  border-radius: calc(var(--neon-radius) - 4px);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.75rem;
+}
+
+.oauth-stack {
+  display: grid;
+  gap: 0.875rem;
+}
+
+.oauth-field {
+  display: grid;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.oauth-input {
+  height: 2.25rem;
+  padding: 0 0.75rem;
+  border: 1px solid var(--neon-input);
+  border-radius: calc(var(--neon-radius) - 2px);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 400;
+}
+
+.oauth-input:focus-visible {
+  outline: 2px solid var(--neon-ring);
+  outline-offset: 1px;
+}
+
+.oauth-button {
+  height: 2.25rem;
+  border: 1px solid transparent;
+  border-radius: calc(var(--neon-radius) - 2px);
+  background: var(--neon-primary);
+  color: var(--neon-primary-foreground);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.oauth-button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.oauth-button-secondary {
+  border-color: var(--neon-border);
+  background: transparent;
+  color: inherit;
+}
+
+.oauth-switch {
+  text-align: center;
+}
+
+.oauth-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--neon-card-foreground);
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.oauth-error {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--neon-destructive);
+}
+
+/* Todo list on the authenticated landing page. Same --neon-* variables as the
+   OAuth screens so both surfaces stay on one palette. */
+.todo-main {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.todo-list {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--neon-border);
+  border-radius: var(--neon-radius);
+  font-size: 0.875rem;
+}
+
+.todo-item[data-done] .todo-title {
+  text-decoration: line-through;
+  color: var(--neon-muted-foreground);
+}
+
+.todo-title {
+  flex: 1;
+  overflow-wrap: anywhere;
+}
+
+.todo-actions {
+  display: flex;
+  gap: 0.375rem;
+}
+
+.todo-button {
+  height: 1.75rem;
+  padding: 0 0.625rem;
+  border: 1px solid var(--neon-border);
+  border-radius: calc(var(--neon-radius) - 2px);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+
+.todo-button:hover {
+  background: var(--neon-muted);
+}
+
+.todo-button-danger {
+  color: var(--neon-destructive);
+}
+.oauth-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
