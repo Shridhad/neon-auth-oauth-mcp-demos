@@ -2,9 +2,9 @@ import 'dotenv/config';
 import { randomBytes } from 'node:crypto';
 import { createServer } from 'node:http';
 
-import { createOAuth } from '@neon/oauth-client';
-import { authenticate, routeOAuthClient } from '@neon/oauth-client/adapter';
-import { toNodeHandler } from '@neon/oauth-client/node';
+import { createOAuth } from '@neon/oauth';
+import { authenticate, routeOAuthClient } from '@neon/oauth/adapter';
+import { toNodeHandler } from '@neon/oauth/node';
 import pg from 'pg';
 
 import { generateDataset, renderDashboard, renderError, renderLanding } from './views.js';
@@ -131,7 +131,7 @@ const str = (v: unknown): string | undefined => (typeof v === 'string' && v ? v 
 
 async function handleHome(request: Request): Promise<Response> {
   const session = await oauth.client.getAccessToken(request);
-  if (!session) return html(renderLanding());
+  if (!session.ok) return html(renderLanding());
   // A refresh rotates the session cookie; it has to ride along on whatever we send back.
   const respond = (res: Response) => {
     if (session.setCookie) res.headers.append('set-cookie', session.setCookie);
@@ -197,8 +197,8 @@ async function dispatch(request: Request, pathname: string): Promise<Response> {
   if (request.method === 'GET') {
     if (pathname === '/api/reports') return handleReports(request);
     if (pathname === '/') return handleHome(request);
-    // Served at the root (not the default /auth) to keep the registered redirect URI `/callback`.
-    const handled = await routeOAuthClient(oauth.client, request, { basePath: '' });
+    // The route prefix comes from REDIRECT_URI (`/callback` serves /login, /callback, /logout at the root).
+    const handled = await routeOAuthClient(oauth.client, request);
     if (handled) return handled;
   }
   return new Response('not found', { status: 404 });

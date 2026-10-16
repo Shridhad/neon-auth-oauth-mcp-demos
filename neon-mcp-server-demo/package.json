@@ -12,7 +12,7 @@
   "dependencies": {
     "@hono/node-server": "2.1.1",
     "@modelcontextprotocol/sdk": "1.32.1",
-    "@neon/oauth-client": "file:../packages/oauth-client",
+    "@neon/oauth": "file:../packages/oauth",
     "dotenv": "17.4.2",
     "hono": "4.13.8",
     "pg": "8.23.1",

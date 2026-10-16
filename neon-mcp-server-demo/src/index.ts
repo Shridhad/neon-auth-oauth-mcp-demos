@@ -4,9 +4,9 @@ import type { Context } from 'hono';
 
 import type { AuthInfo } from '@modelcontextprotocol/sdk/server/auth/types.js';
 import { WebStandardStreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js';
-import { createMcpAuth } from '@neon/oauth-client/mcp';
-import type { AuthResult } from '@neon/oauth-client/mcp';
-import { honoMcp } from '@neon/oauth-client/hono';
+import { createMcpAuth } from '@neon/oauth/mcp';
+import { honoMcp } from '@neon/oauth/mcp/hono';
+import type { McpAuthVariables } from '@neon/oauth/mcp/hono';
 
 import { MCP_RESOURCE, NEON_AUTH_ISSUER, PORT } from './config.js';
 import { createMcpServer } from './mcpServer.js';
@@ -48,7 +48,7 @@ async function handleMcpRequest(request: Request, authInfo: AuthInfo): Promise<R
   return transport.handleRequest(request, { authInfo });
 }
 
-const app = new Hono();
+const app = new Hono<McpAuthVariables>();
 
 // Request logging: without it a client that fails to connect leaves no trace
 // here, making "the client can't reach us" indistinguishable from "we rejected
@@ -72,9 +72,9 @@ app.use('*', async (c, next) => {
 
 // Mounts the unauthenticated protected-resource metadata (MCP clients discover the AS through it
 // before they have a token) and the bearer guard on POST/GET/DELETE /mcp.
-honoMcp(app, mcp);
+app.use(honoMcp(mcp));
 
-const mcpRoute = (c: Context<{ Variables: { auth: AuthResult } }>) => handleMcpRequest(c.req.raw, mcp.toAuthInfo(c.get('auth')));
+const mcpRoute = (c: Context<McpAuthVariables>) => handleMcpRequest(c.req.raw, c.get('authInfo'));
 
 app.post('/mcp', mcpRoute);
 app.get('/mcp', mcpRoute);

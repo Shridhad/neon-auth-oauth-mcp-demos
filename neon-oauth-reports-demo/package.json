@@ -9,7 +9,7 @@
     "start": "NODE_TLS_REJECT_UNAUTHORIZED=0 tsx src/index.ts"
   },
   "dependencies": {
-    "@neon/oauth-client": "file:../packages/oauth-client",
+    "@neon/oauth": "file:../packages/oauth",
     "dotenv": "17.4.2",
     "pg": "8.23.1"
   },

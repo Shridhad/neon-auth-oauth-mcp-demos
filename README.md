@@ -9,7 +9,7 @@ Demo apps for Neon Auth's OAuth provider and MCP support: a login/consent host, 
 | `neon-oauth-reports-demo` | Confidential OAuth client app that calls a protected API | 31101 |
 | `neon-mcp-sdk-client` | CLI MCP client built on `@modelcontextprotocol/sdk` (auth code + PKCE) | - |
 | `neon-mcp-e2e-test` | Scripted end-to-end run of the MCP OAuth flow | - |
-| `packages/oauth-client` | `@neon/oauth-client`: internal SDK prototype (client login, token verification, MCP resource-server auth, framework adapters) | - |
+| `packages/oauth` | `@neon/oauth`: vendored copy of the SDK (client login, token verification, MCP resource-server auth, framework adapters) | - |
 
 ## Architecture
 
@@ -51,4 +51,6 @@ The dev scripts set `NODE_TLS_REJECT_UNAUTHORIZED=0` because a local Neon Auth s
 
 ## Status
 
-`packages/oauth-client` is a prototype. It will be published as a new package, `@neon/oauth`, after which the demos will switch to that package.
+`packages/oauth` is a vendored copy of `@neon/oauth` from [neondatabase/neon-pkgs#869](https://github.com/neondatabase/neon-pkgs/pull/869) (commit `4e32332da4`), kept here until the package is published. It differs from the source only in standalone build config (`catalog:` versions replaced, tests removed, and `types` pointed at `dist/index2.d.ts`, `adapter2.d.ts`, `node2.d.ts` because the build emits the public declarations under those names). Build it with `cd packages/oauth && npm install && npm run build`; the demos link it via `"@neon/oauth": "file:../packages/oauth"`.
+
+Once `@neon/oauth` is on npm, switch each demo with `npm install @neon/oauth@<version>` (replacing the `file:` link) and delete `packages/oauth`. No import changes are needed.
