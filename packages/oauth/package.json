@@ -32,10 +32,10 @@
 	"type": "module",
 	"sideEffects": false,
 	"main": "dist/index.js",
-	"types": "dist/index2.d.ts",
+	"types": "dist/index.d.ts",
 	"exports": {
 		".": {
-			"types": "./dist/index2.d.ts",
+			"types": "./dist/index.d.ts",
 			"default": "./dist/index.js"
 		},
 		"./verify": {
@@ -43,7 +43,7 @@
 			"default": "./dist/verify/index.js"
 		},
 		"./adapter": {
-			"types": "./dist/adapter2.d.ts",
+			"types": "./dist/adapter.d.ts",
 			"default": "./dist/adapter.js"
 		},
 		"./hono": {
@@ -59,7 +59,7 @@
 			"default": "./dist/next.js"
 		},
 		"./node": {
-			"types": "./dist/node2.d.ts",
+			"types": "./dist/node.d.ts",
 			"default": "./dist/node.js"
 		},
 		"./mcp": {

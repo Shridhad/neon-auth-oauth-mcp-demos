@@ -20,8 +20,15 @@ export default defineConfig({
 		"src/mcp/node.ts",
 	],
 	format: "esm",
-	// With a hash, `dist/index.d.ts` becomes `dist/index-<hash>.d.ts` and `types` stops resolving.
+	// Entry file names must be stable because package.json `exports` points at them. Without
+	// `hash: false` they gain a hash suffix; with it, a shared chunk named after an entry (the
+	// declarations for `index`, `adapter`, `node`) steals that file name and pushes the real
+	// entry to `<name>2`. Shared chunks therefore live under `_chunks/`, where they cannot collide.
 	hash: false,
+	outputOptions: {
+		chunkFileNames: (chunk) =>
+			chunk.isEntry ? "[name].js" : "_chunks/[name]-[hash].js",
+	},
 	outDir: "dist",
 	treeshake: true,
 	// Package imports stay runtime imports; only relative modules are bundled.

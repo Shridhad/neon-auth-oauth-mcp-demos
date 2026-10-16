@@ -51,6 +51,6 @@ The dev scripts set `NODE_TLS_REJECT_UNAUTHORIZED=0` because a local Neon Auth s
 
 ## Status
 
-`packages/oauth` is a vendored copy of `@neon/oauth` from [neondatabase/neon-pkgs#869](https://github.com/neondatabase/neon-pkgs/pull/869) (commit `4e32332da4`), kept here until the package is published. It differs from the source only in standalone build config (`catalog:` versions replaced, tests removed, and `types` pointed at `dist/index2.d.ts`, `adapter2.d.ts`, `node2.d.ts` because the build emits the public declarations under those names). Build it with `cd packages/oauth && npm install && npm run build`; the demos link it via `"@neon/oauth": "file:../packages/oauth"`.
+`packages/oauth` is a vendored copy of `@neon/oauth` from [neondatabase/neon-pkgs#869](https://github.com/neondatabase/neon-pkgs/pull/869) (commit `a2b5458386`), kept here until the package is published. It differs from the source only in standalone build config (`catalog:` versions replaced, tests removed). Build it with `cd packages/oauth && npm install && npm run build`; the demos link it via `"@neon/oauth": "file:../packages/oauth"`.
 
 Once `@neon/oauth` is on npm, switch each demo with `npm install @neon/oauth@<version>` (replacing the `file:` link) and delete `packages/oauth`. No import changes are needed.
